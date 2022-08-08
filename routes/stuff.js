@@ -1,15 +1,17 @@
 const express = require('express');
-const { createThing, findThing, updateOneThing, deleteThing } = require('../controllers/stuff');
-const route = express.Router();
 const stuffThing = require('../controllers/stuff');
+const auth = require('../middleware/auth');
+
+const route = express.Router();
 
 
 
-route.post( '/', stuffThing.createThing )  
-route.get('/:id',stuffThing.findOneThing);   
-route.get('/', stuffThing.findThing);   
-route.put('/:id', stuffThing.updateOneThing);   
-route.delete('/:id', stuffThing.deleteThing); 
+
+route.post( '/', auth ,stuffThing.createThing )  
+route.get('/:id',auth ,stuffThing.findOneThing);   
+route.get('/', auth ,stuffThing.findThing);   
+route.put('/:id',auth , stuffThing.updateOneThing);   
+route.delete('/:id',auth , stuffThing.deleteThing); 
 
 
 module.exports = route ;

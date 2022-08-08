@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Thing = require('./models/thing');
-const route = require('./routes/stuff');
-
+const stuffRoutes= require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 
 mongoose.connect('mongodb+srv://open-pro:open-pro@cluster0.qfbx2.mongodb.net/?retryWrites=true&w=majority' ,
@@ -21,6 +21,7 @@ app.use((req, res, next) => {
   });
 
 app.use(express.json());
-app.use('/api/stuff' , route) ;
+app.use('/api/stuff', stuffRoutes);
+app.use('/api/auth', userRoutes);
 
   module.exports = app;
